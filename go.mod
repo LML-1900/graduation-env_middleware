@@ -3,8 +3,8 @@ module env_middleware
 go 1.21
 
 require (
+	github.com/rabbitmq/amqp091-go v1.9.0
 	google.golang.org/grpc v1.60.1
-	google.golang.org/grpc/examples v0.0.0-20231220003043-bb0d32f07806
 	google.golang.org/protobuf v1.31.0
 )
 
