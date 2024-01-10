@@ -26,6 +26,9 @@ func main() {
 	//request := service.MakeStaticDataRequest(34.46, 78.41, 34.79, 78.74, 14, data.DEM_DATA_TYPE)
 	//service.CallGetStaticDataRequestRPC(c, request)
 
-	crater := service.MakeCrater(78.45, 34.49, 5.33, 4.32)
-	service.CallUpdateCrater(c, crater)
+	//crater := service.MakeCrater(78.45, 34.49, 5.33, 4.32)
+	//service.CallUpdateCrater(c, crater)
+
+	startStopPoints := service.MakeStartStopPoints(113.5439372, 22.2180642, 113.5425177, 22.2252363)
+	service.CallGetRoutePoints(c, startStopPoints)
 }

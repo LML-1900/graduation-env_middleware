@@ -42,6 +42,35 @@ func MakeCrater(longitude, latitude, width, depth float64) *pb.Crater {
 	return &crater
 }
 
+func MakeStartStopPoints(startLongitude, startLatitude, stopLongitude, stopLatitude float64) *pb.StartStopPoints {
+	startPoint := pb.Position{
+		Latitude:  startLatitude,
+		Longitude: startLongitude,
+	}
+	endPoint := pb.Position{
+		Latitude:  stopLatitude,
+		Longitude: stopLongitude,
+	}
+	startStopPoints := pb.StartStopPoints{
+		Start: &startPoint,
+		End:   &endPoint,
+	}
+	return &startStopPoints
+}
+
+func CallGetRoutePoints(client pb.EnvironmentDataClient, startStopPoints *pb.StartStopPoints) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	message, err := client.GetRoutePoints(ctx, startStopPoints)
+	if err != nil {
+		log.Fatalf("client.GetRoutePoints failed: %v", err)
+	}
+	fmt.Printf("total points: %v\n", len(message.Pos))
+	for _, point := range message.Pos {
+		fmt.Printf("lon:%v-lat:%v\n", point.Longitude, point.Latitude)
+	}
+}
+
 func CallUpdateCrater(client pb.EnvironmentDataClient, crater *pb.Crater) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
