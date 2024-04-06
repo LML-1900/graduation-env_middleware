@@ -4,23 +4,28 @@ import (
 	"encoding/json"
 	"env_middleware/data"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/spf13/viper"
 	"log"
 )
 
-func RunRabbitMqConsumer(exchangeName string) {
-	conn, err := amqp.Dial("amqp://guest:guest@172.17.0.2:5672")
+type RabbitMq struct {
+	Conn         *amqp.Connection
+	Ch           *amqp.Channel
+	exchangeName string
+	qname        string
+}
+
+func RunRabbitMqConsumer(exchangeName string) (*RabbitMq, error) {
+	url := viper.GetString("rabbitmq.url")
+	conn, err := amqp.Dial(url)
 	if err != nil {
-		log.Fatalf("Failed to connect to RabbitMQ, err:%s\n", err)
-		return
+		return nil, err
 	}
-	defer conn.Close()
 
 	ch, err := conn.Channel()
 	if err != nil {
-		log.Fatalf("Failed to open a channel, err:%s\n", err)
-		return
+		return nil, err
 	}
-	defer ch.Close()
 
 	err = ch.ExchangeDeclare(
 		exchangeName, // name
@@ -32,8 +37,7 @@ func RunRabbitMqConsumer(exchangeName string) {
 		nil,          // arguments
 	)
 	if err != nil {
-		log.Printf("Failed to declare an exchange, err:%s\n", err)
-		return
+		return nil, err
 	}
 
 	q, err := ch.QueueDeclare(
@@ -45,8 +49,7 @@ func RunRabbitMqConsumer(exchangeName string) {
 		nil,   // arguments
 	)
 	if err != nil {
-		log.Printf("Failed to declare a queue, err:%s\n", err)
-		return
+		return nil, err
 	}
 
 	err = ch.QueueBind(
@@ -56,25 +59,31 @@ func RunRabbitMqConsumer(exchangeName string) {
 		false,
 		nil)
 	if err != nil {
-		log.Fatalf("Failed to bind a queue, err:%s\n", err)
-		return
+		return nil, err
 	}
+	mq := RabbitMq{
+		Conn:         conn,
+		Ch:           ch,
+		exchangeName: exchangeName,
+		qname:        q.Name,
+	}
+	return &mq, nil
+}
 
-	msgs, err := ch.Consume(
-		q.Name, // queue
-		"",     // consumer
-		true,   // auto ack
-		false,  // exclusive
-		false,  // no local
-		false,  // no wait
-		nil,    // args
+func (mq *RabbitMq) ConsumeMsgs() {
+	msgs, err := mq.Ch.Consume(
+		mq.qname, // queue
+		"",       // consumer
+		true,     // auto ack
+		false,    // exclusive
+		false,    // no local
+		false,    // no wait
+		nil,      // args
 	)
 	if err != nil {
 		log.Fatalf("Failed to register a consumer, err:%s\n", err)
 		return
 	}
-
-	var forever chan struct{}
 
 	go func() {
 		for d := range msgs {
@@ -88,5 +97,4 @@ func RunRabbitMqConsumer(exchangeName string) {
 		}
 	}()
 
-	<-forever
 }

@@ -4,7 +4,8 @@ import (
 	pb "env_middleware/grpc_env_service"
 	"env_middleware/service"
 	"flag"
-	"sync"
+	"fmt"
+	"github.com/spf13/viper"
 
 	//"github.com/spf13/viper"
 	"google.golang.org/grpc"
@@ -18,18 +19,19 @@ var (
 
 func main() {
 	// set viper
-	//viper.SetConfigFile("./config.yaml")
-	//err := viper.ReadInConfig()
-	//if err != nil {
-	//	panic(fmt.Errorf("Fatal error config file: %s \n", err))
-	//}
+	viper.SetConfigFile("./config.yaml")
+	err := viper.ReadInConfig()
+	if err != nil {
+		panic(fmt.Errorf("Fatal error config file: %s \n", err))
+	}
 
-	var wg sync.WaitGroup
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		service.RunRabbitMqConsumer("dynamic_data_topic")
-	}()
+	mq, err := service.RunRabbitMqConsumer("dynamic_data_topic")
+
+	if err != nil {
+		log.Fatalf("Failed to declare an exchange, err:%v", err)
+	}
+	defer mq.Conn.Close()
+	defer mq.Ch.Close()
 
 	flag.Parse()
 	// Set up a connection to the server.
@@ -48,5 +50,7 @@ func main() {
 	crater = service.MakeCrater(78.41, 34.43, 2.78, 10.78)
 	service.CallUpdateCrater(c, crater)
 
-	wg.Wait()
+	mq.ConsumeMsgs()
+	var forever chan struct{}
+	<-forever
 }

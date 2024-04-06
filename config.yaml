@@ -2,4 +2,4 @@ grpc:
   addr: "localhost:50051"
 
 rabbitmq:
-  url: "amqp://guest:guest@172.17.0.2:5672"
+  url: "amqp://guest:guest@172.17.0.3:5672"
