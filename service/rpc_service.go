@@ -59,6 +59,7 @@ func CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient, request *pb.Ge
 	if err != nil {
 		log.Fatalf("client.GetStaticData failed: %v", err)
 	}
+	count := 0
 	for {
 		tile, err := stream.Recv()
 		if err == io.EOF {
@@ -68,5 +69,7 @@ func CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient, request *pb.Ge
 			log.Fatalf("client.GetStaticData failed: %v", err)
 		}
 		fmt.Println(tile.TileID)
+		count++
 	}
+	fmt.Println(count)
 }
