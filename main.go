@@ -1,22 +1,23 @@
 package main
 
 import (
+	"env_middleware/data"
 	pb "env_middleware/grpc_env_service"
 	"env_middleware/service"
 	"flag"
+	"fmt"
+	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
 	"log"
-	"fmt"
 	"os"
-	"github.com/spf13/viper"
 )
 
-var (
-	addr = flag.String("addr", "localhost:50052", "the address to connect to")
-	//addr = flag.String("addr", "10.134.92.104:50052", "the address to connect to")
-	//addr = flag.String("addr", "10.134.114.97:50052", "the address to connect to")
-)
+//var (
+//	addr = flag.String("addr", "localhost:50052", "the address to connect to")
+//	//addr = flag.String("addr", "10.134.92.104:50052", "the address to connect to")
+//	//addr = flag.String("addr", "10.134.114.97:50052", "the address to connect to")
+//)
 
 func main() {
 	// set viper
@@ -50,7 +51,6 @@ func main() {
 	// request := service.MakeStaticDataRequest(34.46, 78.41, 34.79, 78.74, 14, data.DEM_DATA_TYPE)
 	request := service.MakeStaticDataRequest(34.46, 78.41, 34.491, 78.448, 14, data.DEM_DATA_TYPE)
 	service.CallGetStaticDataRequestRPC(c, request)
-
 
 	//crater := service.MakeCrater(78.45, 34.49, 5.33, 4.32)
 	//service.CallUpdateCrater(c, crater)
