@@ -1,26 +1,21 @@
 package main
 
 import (
-	"env_middleware/data"
 	pb "env_middleware/grpc_env_service"
 	"env_middleware/service"
 	"flag"
-	"fmt"
-	"os"
-
-	"github.com/spf13/viper"
-
-	"log"
-
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"log"
+	"fmt"
+	"os"
+	"github.com/spf13/viper"
 )
 
 var (
-// addr = flag.String("addr", "localhost:3000", "the address to connect to")
-// addr = flag.String("addr", "10.134.93.68:50051", "the address to connect to")
-// addr = flag.String("addr", "10.134.92.104:50051", "the address to connect to")
-// addr = flag.String("addr", "localhost:50051", "the address to connect to")
+	addr = flag.String("addr", "localhost:50052", "the address to connect to")
+	//addr = flag.String("addr", "10.134.92.104:50052", "the address to connect to")
+	//addr = flag.String("addr", "10.134.114.97:50052", "the address to connect to")
 )
 
 func main() {
@@ -56,10 +51,15 @@ func main() {
 	request := service.MakeStaticDataRequest(34.46, 78.41, 34.491, 78.448, 14, data.DEM_DATA_TYPE)
 	service.CallGetStaticDataRequestRPC(c, request)
 
+
 	//crater := service.MakeCrater(78.45, 34.49, 5.33, 4.32)
 	//service.CallUpdateCrater(c, crater)
-	//crater = service.MakeCrater(78.41, 34.43, 2.78, 10.78)
-	//service.CallUpdateCrater(c, crater)
+
+	//startStopPoints := service.MakeStartStopPoints(113.5439372, 22.2180642, 113.5425177, 22.2252363)
+	//service.CallGetRoutePoints(c, startStopPoints)
+
+	obstacle := service.MakeObstacle(113.416793, 22.158472, "road attack")
+	service.CallUpdateObstacles(c, obstacle)
 
 	mq.ConsumeMsgs()
 	var forever chan struct{}
