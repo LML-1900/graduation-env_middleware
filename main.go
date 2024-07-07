@@ -1,11 +1,13 @@
 package main
 
 import (
+	"context"
 	"env_middleware/data"
 	pb "env_middleware/grpc_env_service"
 	"env_middleware/service"
 	"flag"
 	"fmt"
+	"github.com/redis/go-redis/v9"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
@@ -27,6 +29,22 @@ func main() {
 		panic(fmt.Errorf("Fatal error config file: %s \n", err))
 	}
 
+	// set Redis
+	ctx := context.Background()
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     viper.GetString("redis.url"), // Redis服务器地址
+		Password: "",                           // 没有设置密码
+		DB:       0,                            // 使用默认数据库
+	})
+	// 测试连接
+	pong, err := rdb.Ping(ctx).Result()
+	if err != nil {
+		fmt.Println("Error connecting to Redis:", err)
+		return
+	}
+	fmt.Println("Connected to Redis:", pong)
+
+	// set RabbitMQ
 	mq, err := service.RunRabbitMqConsumer("dynamic_data_topic")
 
 	if err != nil {
@@ -35,6 +53,7 @@ func main() {
 	defer mq.Conn.Close()
 	defer mq.Ch.Close()
 
+	// connect to server
 	addr := os.Getenv("SERVER_ADDRESS")
 	if addr == "" {
 		addr = "localhost:50051"
