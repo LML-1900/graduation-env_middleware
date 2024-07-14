@@ -45,7 +45,7 @@ func main() {
 	fmt.Println("Connected to Redis:", pong)
 
 	// set RabbitMQ
-	mq, err := service.RunRabbitMqConsumer("dynamic_data_topic")
+	mq, err := service.RunRabbitMqConsumer("dynamic_data_topic", rdb)
 
 	if err != nil {
 		log.Fatalf("Failed to declare an exchange, err:%v", err)

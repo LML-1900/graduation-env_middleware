@@ -1,9 +1,12 @@
 package service
 
 import (
+	"context"
 	"encoding/json"
 	"env_middleware/data"
+	"env_middleware/store"
 	amqp "github.com/rabbitmq/amqp091-go"
+	"github.com/redis/go-redis/v9"
 	"github.com/spf13/viper"
 	"log"
 )
@@ -13,9 +16,10 @@ type RabbitMq struct {
 	Ch           *amqp.Channel
 	exchangeName string
 	qname        string
+	redisClient  *store.RedisClient
 }
 
-func RunRabbitMqConsumer(exchangeName string) (*RabbitMq, error) {
+func RunRabbitMqConsumer(exchangeName string, redis *redis.Client) (*RabbitMq, error) {
 	url := viper.GetString("rabbitmq.url")
 	conn, err := amqp.Dial(url)
 	if err != nil {
@@ -66,6 +70,7 @@ func RunRabbitMqConsumer(exchangeName string) (*RabbitMq, error) {
 		Ch:           ch,
 		exchangeName: exchangeName,
 		qname:        q.Name,
+		redisClient:  store.NewRedisClient(redis),
 	}
 	return &mq, nil
 }
@@ -94,6 +99,10 @@ func (mq *RabbitMq) ConsumeMsgs() {
 			}
 			log.Printf("received a new crater: lon(%v)-lat(%v), width(%v), depth(%v)\n",
 				crater.Position.Longitude, crater.Position.Latitude, crater.Width, crater.Depth)
+			err = mq.redisClient.InsertCrater(context.Background(), crater)
+			if err != nil {
+				log.Printf("fail to insert crater: craterID: %s, err: %s", crater.CraterID, err)
+			}
 		}
 	}()
 
