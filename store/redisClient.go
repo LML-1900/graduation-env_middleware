@@ -22,19 +22,21 @@ func NewRedisClient(redis *redis.Client) *RedisClient {
 	return &redisClient
 }
 
-func (redisClient *RedisClient) ParseCesHeightmap(ctx context.Context, content, tileID string) error {
+func (redisClient *RedisClient) ParseCesHeightmap(ctx context.Context, tileID string, content []byte) error {
 	level, X, Y, err := util.ParseTileID(tileID)
 	if err != nil {
 		return err
 	}
-	minLon, minLat := util.GetLonLat(level, X, Y)
-	maxLon, maxLat := util.GetLonLat(level, X+1, Y+1)
-	terrainData := []byte(content)
+	minLon, minLat := util.GetLonLat(X, Y, level)
+	maxLon, maxLat := util.GetLonLat(X+1, Y+1, level)
 	offset := 0
 
 	for row := 0; row < 65; row++ {
 		for col := 0; col < 65; col++ {
-			tempDataTile := binary.LittleEndian.Uint16(terrainData[offset:])
+			if offset+2 > len(content) {
+				return fmt.Errorf("content length exceeded: offset=%d, length=%d", offset, len(content))
+			}
+			tempDataTile := binary.LittleEndian.Uint16(content[offset:])
 			offset += 2
 			tempDataTile = uint16(0.2*float64(tempDataTile) - 1000)
 

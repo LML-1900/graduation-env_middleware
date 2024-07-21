@@ -7,7 +7,7 @@ type LonLatPosition struct {
 
 type Crater struct {
 	Position LonLatPosition
-	CraterID string
+	CraterID string  `bson:"crater_id" json:"crater_id"`
 	Width    float64 `bson:"width" json:"width"`
 	Depth    float64 `bson:"depth" json:"depth"`
 }

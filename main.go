@@ -53,10 +53,12 @@ func main() {
 	defer mq.Conn.Close()
 	defer mq.Ch.Close()
 
+	s := service.NewRPCService(rdb)
+
 	// connect to server
 	addr := os.Getenv("SERVER_ADDRESS")
 	if addr == "" {
-		addr = "localhost:50051"
+		addr = "localhost:50052"
 	}
 	flag.Parse()
 	// Set up a connection to the server.
@@ -68,8 +70,9 @@ func main() {
 	c := pb.NewEnvironmentDataClient(conn)
 
 	// request := service.MakeStaticDataRequest(34.46, 78.41, 34.79, 78.74, 14, data.DEM_DATA_TYPE)
-	request := service.MakeStaticDataRequest(34.46, 78.41, 34.491, 78.448, 14, data.DEM_DATA_TYPE)
-	service.CallGetStaticDataRequestRPC(c, request)
+	//request := service.MakeStaticDataRequest(34.46, 78.41, 34.491, 78.448, 14, data.DEM_DATA_TYPE)
+	request := service.MakeStaticDataRequest(34.46, 78.41, 34.47, 78.42, 14, data.DEM_DATA_TYPE)
+	s.CallGetStaticDataRequestRPC(c, request)
 
 	//crater := service.MakeCrater(78.45, 34.49, 5.33, 4.32)
 	//service.CallUpdateCrater(c, crater)
@@ -77,10 +80,12 @@ func main() {
 	//startStopPoints := service.MakeStartStopPoints(113.5439372, 22.2180642, 113.5425177, 22.2252363)
 	//service.CallGetRoutePoints(c, startStopPoints)
 
-	obstacle := service.MakeObstacle(113.416793, 22.158472, "road attack")
-	service.CallUpdateObstacles(c, obstacle)
+	//obstacle := service.MakeObstacle(113.416793, 22.158472, "road attack")
+	//service.CallUpdateObstacles(c, obstacle)
 
-	mq.ConsumeMsgs()
-	var forever chan struct{}
-	<-forever
+	//mq.ConsumeMsgs()
+	//var forever chan struct{}
+	//<-forever
+	altitude, err := s.GetAltitude(78.45, 34.39)
+	fmt.Printf("altitude: %v", altitude)
 }

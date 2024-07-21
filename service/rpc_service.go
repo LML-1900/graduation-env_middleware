@@ -3,11 +3,29 @@ package service
 import (
 	"context"
 	pb "env_middleware/grpc_env_service"
+	"env_middleware/store"
 	"fmt"
+	"github.com/google/uuid"
+	"github.com/redis/go-redis/v9"
 	"io"
 	"log"
 	"time"
 )
+
+type RPCService struct {
+	redisClient *store.RedisClient
+}
+
+func NewRPCService(redis *redis.Client) *RPCService {
+	rpcService := RPCService{
+		redisClient: store.NewRedisClient(redis),
+	}
+	return &rpcService
+}
+
+func (s *RPCService) GetAltitude(longitude, latitude float64) (float64, error) {
+	return 0, nil
+}
 
 func MakeStaticDataRequest(minLatitude, minLongitude, maxLatitude, maxLongitude float64, level int, dataType int) *pb.GetStaticDataRequest {
 	bottomLeft := pb.Position{
@@ -31,24 +49,28 @@ func MakeStaticDataRequest(minLatitude, minLongitude, maxLatitude, maxLongitude 
 }
 
 func MakeCrater(longitude, latitude, width, depth float64) *pb.Crater {
+	id := uuid.New().String()
 	crater := pb.Crater{
 		Pos: &pb.Position{
 			Latitude:  latitude,
 			Longitude: longitude,
 		},
-		Width: width,
-		Depth: depth,
+		Width:    width,
+		Depth:    depth,
+		CraterID: id,
 	}
 	return &crater
 }
 
 func MakeObstacle(longitude, latitude float64, cause string) *pb.Obstacle {
+	id := uuid.New().String()
 	obstacle := pb.Obstacle{
 		Pos: &pb.Position{
 			Latitude:  latitude,
 			Longitude: longitude,
 		},
-		Cause: cause,
+		Cause:      cause,
+		ObstacleID: id,
 	}
 	return &obstacle
 }
@@ -102,7 +124,7 @@ func CallUpdateCrater(client pb.EnvironmentDataClient, crater *pb.Crater) {
 	fmt.Println(message)
 }
 
-func CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient, request *pb.GetStaticDataRequest) {
+func (s *RPCService) CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient, request *pb.GetStaticDataRequest) {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	stream, err := client.GetStaticData(ctx, request)
@@ -117,6 +139,10 @@ func CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient, request *pb.Ge
 		}
 		if err != nil {
 			log.Fatalf("client.GetStaticData failed: %v", err)
+		}
+		err = s.redisClient.ParseCesHeightmap(ctx, tile.TileID, tile.Content)
+		if err != nil {
+			log.Fatalf("parseCesHeightmap failed: %v", err)
 		}
 		fmt.Println(tile.TileID)
 		count++
