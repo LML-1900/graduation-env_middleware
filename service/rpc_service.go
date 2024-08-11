@@ -5,11 +5,12 @@ import (
 	pb "env_middleware/grpc_env_service"
 	"env_middleware/store"
 	"fmt"
-	"github.com/google/uuid"
-	"github.com/redis/go-redis/v9"
 	"io"
 	"log"
 	"time"
+
+	"github.com/google/uuid"
+	"github.com/redis/go-redis/v9"
 )
 
 type RPCService struct {
@@ -91,7 +92,7 @@ func MakeStartStopPoints(startLongitude, startLatitude, stopLongitude, stopLatit
 	return &startStopPoints
 }
 
-func CallGetRoutePoints(client pb.EnvironmentDataClient, startStopPoints *pb.StartStopPoints) {
+func CallGetRoutePoints(client pb.EnvironmentDataClient, startStopPoints *pb.StartStopPoints) *pb.RoutePoints {
 	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
 	defer cancel()
 	message, err := client.GetRoutePoints(ctx, startStopPoints)
@@ -99,9 +100,7 @@ func CallGetRoutePoints(client pb.EnvironmentDataClient, startStopPoints *pb.Sta
 		log.Fatalf("client.GetRoutePoints failed: %v", err)
 	}
 	fmt.Printf("total points: %v\n", len(message.Pos))
-	for _, point := range message.Pos {
-		fmt.Printf("lon:%v-lat:%v\n", point.Longitude, point.Latitude)
-	}
+	return message
 }
 
 func CallUpdateObstacles(client pb.EnvironmentDataClient, obstacle *pb.Obstacle) {
