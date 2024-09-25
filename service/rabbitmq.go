@@ -7,7 +7,6 @@ import (
 	"env_middleware/store"
 	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/redis/go-redis/v9"
-	"github.com/spf13/viper"
 	"log"
 )
 
@@ -19,8 +18,7 @@ type RabbitMq struct {
 	redisClient  *store.RedisClient
 }
 
-func RunRabbitMqConsumer(exchangeName string, redis *redis.Client) (*RabbitMq, error) {
-	url := viper.GetString("rabbitmq.url")
+func RunRabbitMqConsumer(exchangeName string, redis *redis.Client, url string) (*RabbitMq, error) {
 	conn, err := amqp.Dial(url)
 	if err != nil {
 		return nil, err

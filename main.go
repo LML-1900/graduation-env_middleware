@@ -8,7 +8,6 @@ import (
 	"flag"
 	"fmt"
 	"log"
-	"os"
 	"unsafe"
 
 	"github.com/redis/go-redis/v9"
@@ -41,7 +40,7 @@ var (
 )
 
 //export InitMiddleware
-func InitMiddleware() {
+func InitMiddleware(serverUrl, redisUrl, rabbitmqUrl *C.char) {
 	// set viper
 	viper.SetConfigFile("./config.yaml")
 	err := viper.ReadInConfig()
@@ -50,11 +49,17 @@ func InitMiddleware() {
 	}
 
 	// set Redis
+	var redisUrlString string
+	if redisUrl == nil {
+		redisUrlString = viper.GetString("redis.url")
+	} else {
+		redisUrlString = C.GoString(redisUrl)
+	}
 	ctx := context.Background()
 	rdb = redis.NewClient(&redis.Options{
-		Addr:     viper.GetString("redis.url"), // Redis服务器地址
-		Password: "",                           // 没有设置密码
-		DB:       0,                            // 使用默认数据库
+		Addr:     redisUrlString, // Redis服务器地址
+		Password: "",             // 没有设置密码
+		DB:       0,              // 使用默认数据库
 	})
 	// 测试连接
 	pong, err := rdb.Ping(ctx).Result()
@@ -65,24 +70,33 @@ func InitMiddleware() {
 	fmt.Println("Connected to Redis:", pong)
 
 	// set RabbitMQ
-	mq, err = service.RunRabbitMqConsumer("dynamic_data_topic", rdb)
+	var rabbitmqUrlString string
+	if rabbitmqUrl == nil {
+		rabbitmqUrlString = viper.GetString("rabbitmq.url")
+	} else {
+		rabbitmqUrlString = C.GoString(rabbitmqUrl)
+	}
+	mq, err = service.RunRabbitMqConsumer("dynamic_data_topic", rdb, rabbitmqUrlString)
 	if err != nil {
 		log.Fatalf("Failed to declare an rabbitmq exchange, err:%v", err)
+		return
 	}
 
 	// init service
 	s = service.NewRPCService(rdb)
 
 	// connect to server
-	addr := os.Getenv("SERVER_ADDRESS")
-	if addr == "" {
+	var addr string
+	if serverUrl == nil {
 		addr = viper.GetString("grpc.addr")
+	} else {
+		addr = C.GoString(serverUrl)
 	}
 	flag.Parse()
 	// Set up a connection to the server.
 	conn, err = grpc.Dial(addr, grpc.WithTransportCredentials(insecure.NewCredentials()))
 	if err != nil {
-		log.Fatalf("did not connect: %v", err)
+		log.Fatalf("fail to  connect to server %s, error: %v", addr, err)
 	}
 	grpcClient = pb.NewEnvironmentDataClient(conn)
 
@@ -185,7 +199,13 @@ func GetAltitude(longitude, latitude C.double) C.double {
 
 func main() {
 
-	// InitMiddleware()
+	// // test InitMiddleware
+	// var serverUrl *C.char = C.CString("10.134.114.97:50052")
+	// var rabbitmqUrl *C.char = C.CString("amqp://guest:guest@10.134.114.97:5672")
+	// // var redisUrl *C.char = C.CString("10.134.114.97:6379")
+	// defer C.free(unsafe.Pointer(serverUrl))
+	// defer C.free(unsafe.Pointer(rabbitmqUrl))
+	// InitMiddleware(serverUrl, nil, rabbitmqUrl)
 
 	// // test GetRawData
 	// // GetRawData(34.46, 78.41, 34.47, 78.42, 14)
