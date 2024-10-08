@@ -1,0 +1,146 @@
+2024/10/06 22:59:56 GroupID 1, carID 5 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:56 GroupID 1, carID 1 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:56 GroupID 7, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 11, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 12, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 1, carID 4 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:56 GroupID 9, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 11, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 10, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:56 GroupID 12, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 11, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:56 GroupID 11, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 14, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 5, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 15, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 7, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 15, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 9, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 5, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 14, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 14, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 12, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 1, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:57 GroupID 1, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:57 GroupID 10, carID 1 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:57 GroupID 12, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 5, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 11, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 11, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:57 GroupID 12, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 5, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 7, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 7, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 9, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 9, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 9, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 7, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 15, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 10, carID 7 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:58 GroupID 14, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 12, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 14, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 5, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 15, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 10, carID 5 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:58 GroupID 11, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 11, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 5, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 12, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 11, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 5, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:58 GroupID 14, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 15, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 12, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 15, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 10, carID 4 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:59 GroupID 12, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 7, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 7, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 9, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 9, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 22:59:59 GroupID 10, carID 10 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 22:59:59 GroupID 14, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 7, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 7, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 7, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 14, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 1, carID 7 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 5, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 14, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 5, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 9, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 10, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 10, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 1, carID 10 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 1, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 1, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 10, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 10, carID 8 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:00 GroupID 15, carID 6 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 11, carID 3 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 12, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:00 GroupID 14, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:01 GroupID 1, carID 8 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:01 GroupID 5, carID 2 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:01 GroupID 15, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:02 GroupID 3, carID 10 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:03 GroupID 3, carID 1 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:03 GroupID 13, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:03 GroupID 13, carID 5 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:03 GroupID 13, carID 1 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:03 GroupID 15, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:03 GroupID 9, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:03 GroupID 3, carID 8 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:03 GroupID 3, carID 5 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:04 GroupID 9, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:04 GroupID 3, carID 7 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:05 GroupID 15, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:05 GroupID 13, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:05 GroupID 3, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:06 GroupID 13, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:06 GroupID 3, carID 4 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:07 GroupID 13, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:07 GroupID 3, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:08 GroupID 3, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:08 GroupID 13, carID 10 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:08 GroupID 13, carID 8 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:08 GroupID 13, carID 4 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:08 GroupID 3, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:09 GroupID 6, carID 7 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:09 GroupID 8, carID 1 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:09 GroupID 8, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:09 GroupID 13, carID 7 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:09 GroupID 6, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:09 GroupID 6, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:10 GroupID 6, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:12 GroupID 2, carID 10 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:13 GroupID 2, carID 9 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:13 GroupID 2, carID 4 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:13 GroupID 2, carID 8 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:13 GroupID 2, carID 5 get route failed, err: rpc error: code = Unknown desc = unexpected http status code 500 with body "{\"code\": \"InternalError\",\"message\":\"Internal Server Error\"}"
+2024/10/06 23:00:14 GroupID 2, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:15 GroupID 2, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:15 GroupID 4, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:15 GroupID 8, carID 10 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:15 GroupID 8, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:15 GroupID 4, carID 4 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:16 GroupID 6, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:16 GroupID 2, carID 7 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:17 GroupID 6, carID 5 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:17 GroupID 2, carID 1 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 4, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 8, carID 2 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 6, carID 1 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 6, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 6, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 8, carID 6 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 8, carID 8 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:18 GroupID 2, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:19 GroupID 8, carID 3 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:19 GroupID 6, carID 9 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:20 GroupID 4, carID 5 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:20 GroupID 4, carID 10 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:20 GroupID 4, carID 8 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+2024/10/06 23:00:20 GroupID 8, carID 7 get route failed, err: rpc error: code = Unknown desc = NoRoute - No route found between points
+

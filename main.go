@@ -2,12 +2,12 @@ package main
 
 import (
 	pb "env_middleware/grpc_env_service"
-	"env_middleware/service"
+	"env_middleware/test"
 	"flag"
-	"log"
-
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
+	"log"
+	"time"
 )
 
 var (
@@ -32,9 +32,15 @@ func main() {
 	//crater := service.MakeCrater(78.45, 34.49, 5.33, 4.32)
 	//service.CallUpdateCrater(c, crater)
 
-	//startStopPoints := service.MakeStartStopPoints(113.5439372, 22.2180642, 113.5425177, 22.2252363)
+	//startStopPoints := service.MakeStartStopPoints(113.5439372, 22.2180642, 113.5396497, 22.1410194)
 	//service.CallGetRoutePoints(c, startStopPoints)
 
-	obstacle := service.MakeObstacle(113.416793, 22.158472, "road attack")
-	service.CallUpdateObstacles(c, obstacle)
+	//for i := 0; i < 2; i++ {
+	//	obstacle := service.MakeObstacle(113.416793, 22.158472, "road attack")
+	//	service.CallUpdateObstacles(c, obstacle)
+	//}
+	test.TestOSRM(c)
+	// run for 60s
+	time.Sleep(30 * time.Second)
+	//test.RunOriginalRoute(c)
 }

@@ -82,14 +82,25 @@ func CallGetRoutePoints(client pb.EnvironmentDataClient, startStopPoints *pb.Sta
 	}
 }
 
+func CallGetRoutePointsAndRecord(client pb.EnvironmentDataClient, startStopPoints *pb.StartStopPoints) ([]*pb.Position, error) {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	message, err := client.GetRoutePoints(ctx, startStopPoints)
+	if err != nil {
+		return nil, err
+	}
+	//fmt.Printf("total points: %v\n", len(message.Pos))
+	return message.Pos, nil
+}
+
 func CallUpdateObstacles(client pb.EnvironmentDataClient, obstacle *pb.Obstacle) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second)
 	defer cancel()
-	message, err := client.UpdateObstacle(ctx, obstacle)
+	_, err := client.UpdateObstacle(ctx, obstacle)
 	if err != nil {
 		log.Fatalf("client.UpdateObstacle failed: %v", err)
 	}
-	fmt.Println(message)
+	//fmt.Println(message)
 }
 
 func CallUpdateCrater(client pb.EnvironmentDataClient, crater *pb.Crater) {
