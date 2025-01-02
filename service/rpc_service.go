@@ -97,9 +97,9 @@ func CallGetRoutePoints(client pb.EnvironmentDataClient, startStopPoints *pb.Sta
 	defer cancel()
 	message, err := client.GetRoutePoints(ctx, startStopPoints)
 	if err != nil {
-		log.Fatalf("client.GetRoutePoints failed: %v", err)
+		return nil
 	}
-	fmt.Printf("total points: %v\n", len(message.Pos))
+	fmt.Printf("total route points: %v\n", len(message.Pos))
 	return message
 }
 
@@ -108,7 +108,7 @@ func CallUpdateObstacles(client pb.EnvironmentDataClient, obstacle *pb.Obstacle)
 	defer cancel()
 	message, err := client.UpdateObstacle(ctx, obstacle)
 	if err != nil {
-		log.Fatalf("client.UpdateObstacle failed: %v", err)
+		log.Printf("client.UpdateObstacle failed: %v", err)
 	}
 	fmt.Println(message)
 }
@@ -118,7 +118,7 @@ func CallUpdateCrater(client pb.EnvironmentDataClient, crater *pb.Crater) {
 	defer cancel()
 	message, err := client.UpdateCrater(ctx, crater)
 	if err != nil {
-		log.Fatalf("client.UpdateCrater failed: %v", err)
+		log.Printf("client.UpdateCrater failed: %v", err)
 	}
 	fmt.Println(message)
 }
@@ -128,7 +128,7 @@ func (s *RPCService) CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient
 	defer cancel()
 	stream, err := client.GetStaticData(ctx, request)
 	if err != nil {
-		log.Fatalf("client.GetStaticData failed: %v", err)
+		log.Printf("client.GetStaticData failed: %v", err)
 	}
 	count := 0
 	for {
@@ -137,11 +137,11 @@ func (s *RPCService) CallGetStaticDataRequestRPC(client pb.EnvironmentDataClient
 			break
 		}
 		if err != nil {
-			log.Fatalf("client.GetStaticData failed: %v", err)
+			log.Printf("client.GetStaticData failed: %v", err)
 		}
 		err = s.redisClient.ParseCesHeightmap(ctx, tile.TileID, tile.Content)
 		if err != nil {
-			log.Fatalf("parseCesHeightmap failed: %v", err)
+			log.Printf("parseCesHeightmap failed: %v", err)
 		}
 		fmt.Println(tile.TileID)
 		count++

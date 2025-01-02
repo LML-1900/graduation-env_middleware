@@ -5,9 +5,10 @@ import (
 	"encoding/json"
 	"env_middleware/data"
 	"env_middleware/store"
+	"log"
+
 	amqp "github.com/rabbitmq/amqp091-go"
 	"github.com/redis/go-redis/v9"
-	"log"
 )
 
 type RabbitMq struct {
@@ -73,7 +74,7 @@ func RunRabbitMqConsumer(exchangeName string, redis *redis.Client, url string) (
 	return &mq, nil
 }
 
-func (mq *RabbitMq) ConsumeMsgs() {
+func (mq *RabbitMq) ConsumeMsgs(ctx context.Context) {
 	msgs, err := mq.Ch.Consume(
 		mq.qname, // queue
 		"",       // consumer
@@ -88,20 +89,31 @@ func (mq *RabbitMq) ConsumeMsgs() {
 		return
 	}
 
-	go func() {
-		for d := range msgs {
+	// 消费消息并检查取消信号
+	for {
+		select {
+		case <-ctx.Done():
+			log.Println("Consumer stopping gracefully...")
+			return
+		case d, ok := <-msgs:
+			if !ok {
+				// 消息通道关闭
+				log.Println("Message channel closed.")
+				return
+			}
 			crater := data.Crater{}
 			err := json.Unmarshal(d.Body, &crater)
 			if err != nil {
-				log.Printf("fail to unmarshal received crater, err:%s\n", err)
+				log.Printf("Failed to unmarshal received crater, err:%s\n", err)
+				continue
 			}
-			log.Printf("received a new crater: lon(%v)-lat(%v), width(%v), depth(%v)\n",
+			log.Printf("Received a new crater: lon(%v)-lat(%v), width(%v), depth(%v)\n",
 				crater.Position.Longitude, crater.Position.Latitude, crater.Width, crater.Depth)
+
 			err = mq.redisClient.InsertCrater(context.Background(), crater)
 			if err != nil {
-				log.Printf("fail to insert crater: craterID: %s, err: %s", crater.CraterID, err)
+				log.Printf("Failed to insert crater: craterID: %s, err: %s", crater.CraterID, err)
 			}
 		}
-	}()
-
+	}
 }

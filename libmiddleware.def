@@ -1,0 +1,10 @@
+LIBRARY libmiddleware
+EXPORTS
+    InitMiddleware
+    CloseMiddleware
+    GetRawData
+    GetRoutePoints
+    FreePositionsPointer
+    UpdateObstacle
+    UpdateCrater
+    GetAltitude

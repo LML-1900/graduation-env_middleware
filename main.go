@@ -24,12 +24,6 @@ import (
 // }
 import "C"
 
-//var (
-//	addr = flag.String("addr", "localhost:50052", "the address to connect to")
-//	//addr = flag.String("addr", "10.134.92.104:50052", "the address to connect to")
-//	//addr = flag.String("addr", "10.134.114.97:50052", "the address to connect to")
-//)
-
 var (
 	rdb        *redis.Client
 	mq         *service.RabbitMq
@@ -39,8 +33,16 @@ var (
 	stopSignal chan struct{}
 )
 
+// 消费消息的上下文
+var consumerCtx context.Context
+var cancelConsumer context.CancelFunc
+
 //export InitMiddleware
 func InitMiddleware(serverUrl, redisUrl, rabbitmqUrl *C.char) {
+	// 初始化 stopSignal 和 context
+	stopSignal = make(chan struct{})
+	consumerCtx, cancelConsumer = context.WithCancel(context.Background())
+
 	// set viper
 	viper.SetConfigFile("./config.yaml")
 	err := viper.ReadInConfig()
@@ -100,26 +102,28 @@ func InitMiddleware(serverUrl, redisUrl, rabbitmqUrl *C.char) {
 	}
 	grpcClient = pb.NewEnvironmentDataClient(conn)
 
-	// start consume
-	go func() {
-		for {
-			select {
-			case <-stopSignal:
-				fmt.Println("Stopping message consumption...")
-				return
-			default:
-				mq.ConsumeMsgs()
-			}
-		}
-	}()
+	// // start consume
+	// go func() {
+	// 	for {
+	// 		select {
+	// 		case <-stopSignal:
+	// 			fmt.Println("Stopping message consumption...")
+	// 			return
+	// 		default:
+	// 			mq.ConsumeMsgs(consumerCtx)
+	// 		}
+	// 	}
+	// }()
 }
 
 //export CloseMiddleware
 func CloseMiddleware() {
+	// 优雅停止消息消费
+	close(stopSignal)
+	cancelConsumer() // 取消消费上下文
 	mq.Conn.Close()
 	mq.Ch.Close()
 	conn.Close()
-	close(stopSignal)
 }
 
 //export GetRawData
@@ -230,7 +234,6 @@ func main() {
 	// // test GetAltitude
 	// altitude := GetAltitude(78.45, 34.39)
 	// fmt.Printf("altitude at lonlat(%f, %f) is %f", 78.45, 34.39, float64(altitude))
-
 	// CloseMiddleware()
 
 	// request := service.MakeStaticDataRequest(34.46, 78.41, 34.79, 78.74, 14, data.DEM_DATA_TYPE)
