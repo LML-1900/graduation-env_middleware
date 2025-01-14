@@ -1,9 +1,9 @@
 grpc:
-  addr: "localhost:50052"
-  # addr: "10.134.114.97:50052"
+  # addr: "localhost:50052"
+  addr: "10.134.114.218:50052"
 
 rabbitmq:
-  url: "amqp://guest:guest@localhost:5672"
+  url: "amqp://guest:guest@10.134.114.218:5672"
 
 redis:
   url: "localhost:6379"
