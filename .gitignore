@@ -1,2 +1,4 @@
 /routes/
 /test_result/
+*.pb.go
+*.txt
