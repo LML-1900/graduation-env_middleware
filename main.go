@@ -4,15 +4,15 @@ import (
 	pb "env_middleware/grpc_env_service"
 	"env_middleware/test"
 	"flag"
+	"log"
+
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"log"
-	"time"
 )
 
 var (
-	addr = flag.String("addr", "localhost:50052", "the address to connect to")
-	//addr = flag.String("addr", "10.134.92.104:50052", "the address to connect to")
+	// addr = flag.String("addr", "localhost:50052", "the address to connect to")
+	addr = flag.String("addr", "10.134.114.218:50052", "the address to connect to")
 	//addr = flag.String("addr", "10.134.114.97:50052", "the address to connect to")
 )
 
@@ -39,8 +39,12 @@ func main() {
 	//	obstacle := service.MakeObstacle(113.416793, 22.158472, "road attack")
 	//	service.CallUpdateObstacles(c, obstacle)
 	//}
-	test.TestOSRM(c)
-	// run for 60s
-	time.Sleep(30 * time.Second)
-	//test.RunOriginalRoute(c)
+	// test.TestOSRM(c)
+	// // run for 60s
+	// time.Sleep(30 * time.Second)
+	// test.RunOriginalRoute(c)
+	forever := make(chan int)
+	test.GenerateBarriers(c)
+	<-forever
+
 }
