@@ -110,19 +110,7 @@ func InitMiddleware(serverUrl, redisUrl, rabbitmqUrl string) {
 	// }()
 }
 
-//export CloseMiddleware
-func CloseMiddleware() {
-	// 优雅停止消息消费
-	close(stopSignal)
-	cancelConsumer() // 取消消费上下文
-	mq.Conn.Close()
-	mq.Ch.Close()
-	conn.Close()
-}
-
 func main() {
-
-	// test InitMiddleware
 	serverUrl := "10.134.114.218:50052"
 	rabbitmqUrl := "amqp://guest:guest@10.134.114.218:5672"
 	InitMiddleware(serverUrl, "", rabbitmqUrl)
