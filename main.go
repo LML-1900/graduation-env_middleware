@@ -145,9 +145,8 @@ func main() {
 }
 
 type Request struct {
-	Function string     `json:"function"`
-	Start    [2]float64 `json:"start"`
-	End      [2]float64 `json:"end"`
+	Function string          `json:"function"`
+	Data     json.RawMessage `json:"data"` // Store function-specific parameters
 }
 
 type Response struct {
@@ -185,8 +184,19 @@ func handleConnection(socket_conn net.Conn) {
 		}
 
 		var resp Response
-		if req.Function == "routePlanning" {
-			startStopPoints := service.MakeStartStopPoints(req.Start[0], req.Start[1], req.End[0], req.End[1])
+		needResponse := true
+		switch req.Function {
+		case "routePlanning":
+			var routeParams struct {
+				Start [2]float64 `json:"start"`
+				End   [2]float64 `json:"end"`
+			}
+			err := json.Unmarshal(req.Data, &routeParams)
+			if err != nil {
+				fmt.Println("Error decoding routePlanning data:", err)
+				continue
+			}
+			startStopPoints := service.MakeStartStopPoints(routeParams.Start[0], routeParams.Start[1], routeParams.End[0], routeParams.End[1])
 			message := service.CallGetRoutePoints(grpcClient, startStopPoints)
 			path := make([][2]float64, 0)
 			if message != nil {
@@ -194,19 +204,36 @@ func handleConnection(socket_conn net.Conn) {
 				for i, pos := range message.Pos {
 					path[i][0] = pos.Longitude
 					path[i][1] = pos.Latitude
+					// fmt.Printf("lon: %v, lat: %v\n", path[i][0], path[i][1])
 				}
 			}
 			resp = Response{
 				Length: len(path),
 				Path:   path,
 			}
-		} else {
-			resp = Response{
-				Length: 0,
-			}
-		}
 
+		case "updateObstacle":
+			var obstacleParams struct {
+				Location [2]float64 `json:"location"`
+				Cause    string
+			}
+			err := json.Unmarshal(req.Data, &obstacleParams)
+			if err != nil {
+				fmt.Println("Error decoding updateObstacle data:", err)
+				continue
+			}
+			fmt.Printf("received obstacle: pos(%v, %v), cause(%v)\n", obstacleParams.Location[0], obstacleParams.Location[1], obstacleParams.Cause)
+			obstacle := service.MakeObstacle(obstacleParams.Location[0], obstacleParams.Location[1], obstacleParams.Cause)
+			service.CallUpdateObstacles(grpcClient, obstacle)
+			needResponse = false
+
+		default:
+			fmt.Println("Unknown function:", req.Function)
+		}
 		// 发送响应
+		if !needResponse {
+			continue
+		}
 		respData, err := json.Marshal(resp)
 		if err != nil {
 			fmt.Println("Error encoding JSON:", err)
